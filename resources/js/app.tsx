@@ -4,7 +4,7 @@ import Layout from "@/Layouts/Default";
 
 createInertiaApp({
   title: (title) =>
-    title ? `${title}` : "ISPGO",
+    title ? `${title}` : "Book If",
   resolve: (name) => {
     // @ts-ignore
     const pages = import.meta.glob("./Pages/**/*.tsx", {eager: true});
