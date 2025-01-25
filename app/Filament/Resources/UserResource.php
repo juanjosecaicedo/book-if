@@ -19,6 +19,11 @@ class UserResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-users';
 
+    public static function getNavigationGroup(): ?string
+    {
+        return __('Users and Memberships');
+    }
+
     public static function form(Form $form): Form
     {
         return $form

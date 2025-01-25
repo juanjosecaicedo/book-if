@@ -11,6 +11,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Str;
 use Filament\Forms\Components\{TextInput, Textarea, FileUpload};
 
 class CategoryResource extends Resource
@@ -19,6 +20,11 @@ class CategoryResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-tag';
 
+    public static function getNavigationGroup(): ?string
+    {
+        return __('Service Management');
+    }
+
     public static function form(Form $form): Form
     {
         return $form
@@ -26,15 +32,16 @@ class CategoryResource extends Resource
                 TextInput::make('name', 'Name')
                     ->required()
                     ->reactive()
-                    ->afterStateUpdated(fn(callable $set, $state) => $set('slug', \Illuminate\Support\Str::slug($state)))
+                    ->afterStateUpdated(fn(callable $set, $state) => $set('slug', Str::slug($state)))
                     ->maxLength(55),
 
 
-                TextInput::make('slug', __('Slug'))
+                TextInput::make('slug')
+                    ->label(__('Slug'))
                     ->required()
                     ->unique(ignoreRecord: true)
                     ->disabled(fn(callable $get) => $get('name') === null)
-                    ->default(fn(callable $get) => \Illuminate\Support\Str::slug($get('name'))),
+                    ->default(fn(callable $get) => Str::slug($get('name'))),
 
                 FileUpload::make('image')
                     ->image()

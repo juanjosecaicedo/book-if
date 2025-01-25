@@ -20,6 +20,11 @@ class MembershipResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-ticket';
 
+    public static function getNavigationGroup(): ?string
+    {
+        return __('Users and Memberships');
+    }
+
     public static function form(Form $form): Form
     {
         return $form
@@ -61,7 +66,15 @@ class MembershipResource extends Resource
     {
         return $table
             ->columns([
-                //
+                Tables\Columns\TextColumn::make('name')->label(__('Name')),
+                Tables\Columns\TextColumn::make('price')
+                    ->numeric(decimalPlaces: 2)
+                    ->label(__('Name')),
+                Tables\Columns\TextColumn::make('description')
+                    ->label(__('Description'))
+                    ->limit(50)
+                    ->html()
+                    ->wrap()
             ])
             ->filters([
                 //

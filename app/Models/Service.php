@@ -17,11 +17,15 @@ class Service extends Model
         'description',
         'short_description',
         'is_active',
-        'category_id',
-        'user_id'
+        'user_id',
+        'tags',
     ];
 
-    protected $casts = ['attachments' => 'array'];
+    protected $casts = [
+        'attachments' => 'array',
+        'tags' => 'array',
+        'is_active' => 'boolean',
+    ];
 
 
     public function category(): \Illuminate\Database\Eloquent\Relations\BelongsTo

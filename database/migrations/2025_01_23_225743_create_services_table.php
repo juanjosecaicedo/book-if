@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->string('image');
             $table->string('attachments');
             $table->decimal('price', 10, 2);
-            $table->integer('duration');
+            $table->time('duration');
             $table->text('description')->nullable();
             $table->text('short_description')->nullable();
             $table->boolean('is_active')->default(true);

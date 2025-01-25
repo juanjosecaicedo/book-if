@@ -19,6 +19,11 @@ class BookingResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-calendar-days';
 
+    public static function getNavigationGroup(): ?string
+    {
+        return __('Booking Management');
+    }
+
     public static function form(Form $form): Form
     {
         return $form
